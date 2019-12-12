@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[6]:
+# In[13]:
 
 
+# reference : https://medium.com/iecse-hashtag/huffman-coding-compression-basics-in-python-6653cdb4c476
 class Group(object):
     def __init__(self, _name):
         self.name = _name
@@ -44,16 +45,19 @@ def is_user_in_group(user, group):
       group(class:Group): group to check user membership against
     """
     
-    if user == group.get_name() or user in group.get_users():
-        return True
-    for usrgrp in group.get_groups():
-        return is_user_in_group(user, usrgrp)
+    
+    if isinstance(group, Group):
+        if user == group.get_name() or user in group.get_users():
+            return True
+        for usrgrp in group.get_groups():
+            return is_user_in_group(user, usrgrp)
     return False
 
 
 print(is_user_in_group("child", child)) #True
 print(is_user_in_group("", child))  #False
 print(is_user_in_group("sub_child_user", parent))   #True
+print(is_user_in_group("sub_child_user", sub_child_user))   #False
 
 
 # In[ ]:

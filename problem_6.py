@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[8]:
+# In[1]:
 
 
 class Node:
@@ -57,9 +57,13 @@ def union(LL1, LL2):
     result = LinkedList()
     for element in my_set:
         result.append(element)
-    return result
+    if result.size():
+        return result
+    return None
 
 def intersection(LL1, LL2):
+    if LL1 is None or LL2 is None:
+        return None
     my_set1 = set()
     current = LL1.head
     while current:
@@ -70,14 +74,21 @@ def intersection(LL1, LL2):
     while current:
         my_set2.add(current.value)
         current = current.next
-
-    l = my_set1.intersection(my_set2)
+        
     result = LinkedList()
-    for element in l:
-        result.append(element)
-    return result
-# Test case 1
+    for element1 in my_set1:
+        for element2 in my_set2:
+            if element1 == element2:
+                result.append(element1)
 
+    if result.size():
+        return result
+    return None
+
+    
+
+# Test case 1
+print("Test case 1")
 linked_list_1 = LinkedList()
 linked_list_2 = LinkedList()
 
@@ -94,7 +105,7 @@ print (union(linked_list_1,linked_list_2))
 print (intersection(linked_list_1,linked_list_2))
 
 # Test case 2
-
+print("Test case 2")
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
@@ -109,6 +120,41 @@ for i in element_2:
 
 print (union(linked_list_3,linked_list_4))
 print (intersection(linked_list_3,linked_list_4))
+
+# Test case 3
+print("Test case 3")
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = [2, 4, 6, 8, 10]
+element_2 = [1,3,5,7,9,11,13]
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print (union(linked_list_5, linked_list_6))
+print (intersection(linked_list_5, linked_list_6))
+
+
+# Test case 4
+print("Test case 4")
+linked_list_7 = LinkedList()
+linked_list_8 = LinkedList()
+
+element_1 = []
+element_2 = []
+
+for i in element_1:
+    linked_list_7.append(i)
+
+for i in element_2:
+    linked_list_8.append(i)
+
+print (union(linked_list_7, linked_list_8))
+print (intersection(linked_list_7, linked_list_8))
 
 
 # In[ ]:

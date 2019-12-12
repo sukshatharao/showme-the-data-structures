@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[13]:
+# In[37]:
 
 
 import os
-def find_files(suffix, path , files= []):
+
+def find_files(suffix, path):
     """
     Find all files beneath path with file name suffix.
 
@@ -21,25 +22,32 @@ def find_files(suffix, path , files= []):
     Returns:
        a list of paths
     """
-    temp = suffix
-    if path:
-        temp = suffix + '/' + path
-    for i in os.listdir(temp):
-        temp1 = temp +  '/' + i
+    if len(path)==0 or len(suffix)==0:
+        return None
+    for i in os.listdir(path):
+        temp1 = path +  '/' + i
+        #print("temp1 is", temp1)
         if os.path.isfile(temp1) and temp1.endswith(".c"):
-            files.append(temp1)
-            #print(temp1)
-
+            files.add(temp1)
         elif os.path.isdir(temp1):
-            files = find_files(temp, i, files)
+            find_files(suffix, temp1)
     return files
-    return None
 
-print(find_files('.', 'testdir'))
+files = set()
+files_1 = find_files('.c', 'testdir')
+print(files_1)
 
-print("\n",find_files('.', ''))
+files = set()
+files_2 = find_files('.c', 'testdir/subdir3')
+print(files_2)
 
-print("\n",find_files('.', 'testdir/subdir3'))
+files = set()
+files_3 = find_files('.c', '')   #returns None, since there is no path defined
+print(files_3)
+
+files = set()
+files_4 = find_files('', 'testdir')  #returns None, since there is no suffix defined
+print(files_4)
 
 
 # In[ ]:
