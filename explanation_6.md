@@ -7,7 +7,9 @@ Union: Time complexity: O(n) , Space complexity: O(m+n)
 
 
 
-The intersect goes through one list element by element, O(n) and searches for it in the second list and also in the intersect list before it adds it - worst case O(n^2) for each search.
+The intersection function (intersect)  - goes through one list element by element, O(n) and I have taken advantage of the fast lookup time of the second set here , hence it is a linear lookup since I am using a set : O(1) and also in the intersect list before it adds it
+
 The space complexity worst case would be if all the elements in both the sets are same: O(m+m), if m is the length of linked list
 
-intersection: Time complexity: O(n^2) , Space complexity: O(2m)
+intersection: Time complexity: O(n + 1) = O(n) , Space complexity: O(2m)
+
